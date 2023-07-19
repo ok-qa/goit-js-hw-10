@@ -1,4 +1,14 @@
-
+.html{
+    background-image:
+	 url(/src/images/minimalist-cat.jpeg
+     );
+    background-repeat: no-repeat;
+	background-size: cover;
+	background-color: var(--base-color);
+    background-attachment: fixed;
+    height: 100%;
+    width: 100%;
+    }
 
 .header{
    	max-width: 496px;
@@ -16,16 +26,3 @@
     color:#2E2F42;; 
 }
 
-.hero-box{
-    max-width: 1440px;
-	margin-left: auto;
-	margin-right: auto;
-    background-image: /* linear-gradient(
-		to right,
-		rgba(46, 47, 66, 0.7),
-		rgba(46, 47, 66, 0.7)), */
-	 url("../images/minimalist-cat.jpeg");
-    background-repeat: no-repeat;
-	background-size: cover;
-	background-color: var(--base-color);
-    }

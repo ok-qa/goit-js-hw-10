@@ -10,12 +10,12 @@ const catApi = axios.create({
   },
 });
 
-export function fetchBreedsBreeds() {
+export function fetchBreeds() {
   return catApi.get(`breeds`).then(response => {
     return response.data;
   });
 }
-export function fetchCatByBreedCatByBreed(breedId) {
+export function fetchCatByBreed(breedId) {
   return catApi
     .get(`images/search`, {
       params: {
