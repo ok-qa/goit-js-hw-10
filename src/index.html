@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/index.css">
-    <title>Cat Finder</title>
-  </head>
-  <body>
-    <include src="./partials/header.html"></include>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/index.css">
+  <title>Cat Finder</title>
+</head>
+
+<body>
+  <include src="./partials/header.html"></include>
   <include src="./partials/cat-card.html"></include>
-    
-    <div class=""><select class="breed-select"></select>
+
+  <div class="cat-finder">
     <p class="loader">Loading data, please wait...</p>
     <p class="error">Oops! Something went wrong! Try reloading the page!</p>
     <div class="cat-info"></div>
-    </div>
+    <select class="breed-select"></select>
+  </div>
 
-    <script src="../src/js/index.js" type="module"></script>
-  </body>
+  <script src="../src/js/index.js" type="module"></script>
+</body>
+
 </html>

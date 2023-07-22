@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 const API_KEY =
   'live_67J7AXh0WW6IIKoUOflgQrQRznlzC75dDbyp1CZSH7NWSHGINTir8OcKkYSJqSez';
 
@@ -24,5 +22,6 @@ export function fetchCatByBreed(breedId) {
     })
     .then(response => {
       return response.data;
-    });
+    })
+    .catch(onError);
 }
