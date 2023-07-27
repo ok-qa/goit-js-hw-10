@@ -22,10 +22,10 @@ fetchBreeds()
     .catch(err => console.log(err))
     .finally(() => loader.setAttribute('hidden', true))
 
-catSelector.addEventListener('change', changeCat);
+catSelector.addEventListener('change', getCat);
 
 
-function changeCat(event) {
+function getCat(event) {
   catInfo.setAttribute('hidden', true);
   loader.removeAttribute('hidden')
   fetchCatByBreed(event.target.value)
