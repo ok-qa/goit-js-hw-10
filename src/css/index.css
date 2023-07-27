@@ -1,6 +1,6 @@
 .html{
     background-image:
-	 url(/src/images/minimalist-cat.jpeg
+	 url('/src/images/minimalist-cat.jpeg'
      );
     background-repeat: no-repeat;
 	background-size: cover;
