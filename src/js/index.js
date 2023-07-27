@@ -1,47 +1,52 @@
-import SlimSelect from 'slim-select';
-
-
-import { fetchBreeds, fetchCatByBreed } from './cat-api';
-import '../css/index.css';
+import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
 import Notiflix from 'notiflix';
-import { createMarkup } from './markup.js';
 
+
+const catSelector = document.querySelector('.breed-select');
+const catInfo = document.querySelector('.cat-info');
 const loader = document.querySelector('.loader');
-const selectBreed = document.querySelector('.breed-select');
-const errorMsg = document.querySelector('.error');
-const backdrop = document.querySelector('#backdrop');
-const catModal = document.querySelector('#cat-card-content');
-const closeButton = document.querySelector('#close-button');
+const error = document.querySelector('.error');
 
-let pickedBred = null;
-let breeds = [];
-let SlimSelect = new SlimSelect({
-  select: '.breed-select',
-  placeholder: 'Loading breeds...',
-  allowDeselect: true,
-  deselectLabel: '<span class="placeholder">Select a breed</span>',
-  showFirstOption: false,
-  onChange: info => {
-    let selectedBreed = info[0].value;
-    if (selectedBreed) {
-      fetchCatByBreed(selectedBreed);
-    }
-  },
-});
 
-errorMsg.style.display = 'none';
-backdrop.style.display = 'none';
+error.setAttribute('hidden', true)
+catSelector.setAttribute('hidden', true);
 
-closeButton.addEventListener('click', () => {
-  backdrop.style.display = 'none';
-});
 
-function createBreedMarkup(items) {
-  SlimSelect.setData(
-    [{ text: 'Select a breed', value: '' }].concat(
-      items.map(item => {
-        return { text: item.name, value: item.id };
-      })
-    )
-  );
+fetchBreeds()
+    .then(data => {
+        catSelector.removeAttribute('hidden');
+    return (catSelector.innerHTML = data
+      .map(({ id, name }) => `<option value="${id}">${name}</option>`)
+      .join(''));
+    })
+    .catch(err => console.log(err))
+    .finally(() => loader.setAttribute('hidden', true))
+
+catSelector.addEventListener('change', changeCat);
+
+
+function changeCat(event) {
+  catInfo.setAttribute('hidden', true);
+  loader.removeAttribute('hidden')
+  fetchCatByBreed(event.target.value)
+    .then(data => {
+      catInfo.removeAttribute('hidden');
+      catSelector.removeAttribute('hidden');
+      let catInformation = data[0].breeds[0];
+      const { name, description, temperament } = catInformation;
+      catInfo.innerHTML = data
+        .map(({ url }) => `<img src="${url}" alt="${name}" width="400" />`)
+        .join('');
+      catInfo.insertAdjacentHTML(
+        'beforeend',
+        `<h2>${name}</h2>
+    <h3>${description}</h3>
+    <p>${temperament}</p>`
+      );
+    })
+    .catch(() => {
+      catInfo.setAttribute('hidden', true);
+      return Notiflix.Notify.failure(error.textContent)
+    })
+    .finally(() => loader.setAttribute('hidden', true))
 }
