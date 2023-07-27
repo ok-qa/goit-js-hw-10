@@ -41,7 +41,7 @@ function changeCat(event) {
         'beforeend',
         `<h2>${name}</h2>
     <h3>${description}</h3>
-    <p>${temperament}</p>`
+    <h4>${temperament}</h4>`
       );
     })
     .catch(() => {
