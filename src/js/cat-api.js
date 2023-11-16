@@ -15,9 +15,9 @@ export function fetchBreeds() {
 
 export function fetchCatByBreed(breedId) {
   return axios.get(`/images/search?breed_ids=${breedId}`).then(resp => {
-    if (resp.status !== 200) {
+     if (resp.status !== 200) {
       throw new Error(resp.statusText);
-    }
+     }
     return resp.data;
   });
 }

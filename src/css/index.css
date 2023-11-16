@@ -11,6 +11,10 @@
 	line-height: calc(60/56);
 	letter-spacing: 0.02em;
     text-transform: capitalize;
-    color:#2E2F42;; 
+    color:#2E2F42; 
+}
+
+.slimSelectClass{
+	width: 240px;
 }
 
